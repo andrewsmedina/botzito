@@ -5,9 +5,10 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
-const token = ""
+var token = os.Getenv("TOKEN")
 
 func getUpdates() ([]byte, error) {
 	url := fmt.Sprintf("https://api.telegram.org/bot%s/getUpdates", token)
