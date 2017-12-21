@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/andrewsmedina/botzito/telegram"
+	"github.com/robfig/cron"
 )
 
 func main() {
@@ -16,4 +17,8 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println(string(updates))
+
+	c := cron.New()
+	c.AddFunc("0 0 0 * * *", func() { t.SendMessage("time to sleep") })
+	c.AddFunc("0 0 9 * * *", func() { t.SendMessage("time to wake up") })
 }
