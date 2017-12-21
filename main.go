@@ -21,4 +21,6 @@ func main() {
 	c := cron.New()
 	c.AddFunc("0 0 0 * * *", func() { t.SendMessage("time to sleep") })
 	c.AddFunc("0 0 9 * * *", func() { t.SendMessage("time to wake up") })
+	for {
+	}
 }
