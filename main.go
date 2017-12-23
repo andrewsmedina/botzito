@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
+	"os"
 
 	"github.com/andrewsmedina/botzito/telegram"
 	"github.com/robfig/cron"
@@ -21,6 +23,10 @@ func main() {
 	c := cron.New()
 	c.AddFunc("0 0 0 * * *", func() { t.SendMessage("time to sleep") })
 	c.AddFunc("0 0 9 * * *", func() { t.SendMessage("time to wake up") })
-	for {
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
 	}
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
