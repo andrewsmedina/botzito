@@ -1,1 +1,1 @@
-worker: botzito
+web: botzito
